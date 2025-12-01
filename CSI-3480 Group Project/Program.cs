@@ -8,7 +8,7 @@ namespace CSI_3480_Group_Project
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("This is a password generator that hashes your password and saves it to be recalled later.\nType: 'generate' to generate a new password and save it, 'recall' to recall a password from a file, and 'end' to end your session.");
+            Console.WriteLine("This is a password generator that encrypts your password and saves it to be recalled later.\nType: 'generate' to generate a new password and save it, 'recall' to recall a password from a file, and 'end' to end your session.");
             Console.Write("\nEnter Command: ");
             string input = Console.ReadLine();
             string password;
