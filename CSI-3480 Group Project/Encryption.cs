@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -9,6 +10,8 @@ namespace CSI_3480_Group_Project
 {
     internal class Encryption
     {
+        private static readonly byte[] salt = Encoding.UTF8.GetBytes("CSI3480_Password_Salt");
+
         public static string Encrypt(string password, string masterPassword)
         {
             byte[] encryptedBytes;
@@ -65,9 +68,9 @@ namespace CSI_3480_Group_Project
 
         public static byte[] DeriveKey(string masterPassword)
         {
-            using (var sha256 = SHA256.Create())
+            using (var derive = new Rfc2898DeriveBytes(masterPassword, salt, 100000, HashAlgorithmName.SHA256))
             {
-                return sha256.ComputeHash(Encoding.UTF8.GetBytes(masterPassword));
+                return derive.GetBytes(32);
             }
         }
     }
